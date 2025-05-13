@@ -1,0 +1,34 @@
+runtime: php82
+env: standard
+instance_class: F1
+service: angel-bran-gae-be
+handlers:
+- url: /images
+  static_dir: public/images
+  expiration: "1d"
+- url: /(.*\.(gif|png|jpg|css|js))$
+  static_files: public/\1
+  upload: public/.*\.(gif|png|jpg|css|js)$
+  expiration: "1d"
+- url: /.*
+  script: auto
+  secure: always
+env_variables:
+  APP_NAME: laravel-gae
+  APP_STORAGE: /tmp
+  LOG_CHANNEL: stderr
+  CACHE_DRIVER: array
+  SESSION_DRIVER: database
+  APP_SERVICES_CACHE: /tmp/services.php
+  APP_PACKAGES_CACHE: /tmp/packages.php
+  APP_CONFIG_CACHE: /tmp/config.php
+  APP_ROUTES_CACHE: /tmp/routes.php
+  QUEUE_CONNECTION: sync
+  APP_TIMEZONE: America/El_Salvador
+  VIEW_COMPILED_PATH: /tmp
+  DB_CONNECTION: mysql
+  DB_HOST: 127.0.0.1
+  DB_PORT: 3306
+  DB_DATABASE: laravel
+  DB_USERNAME: root
+  DB_PASSWORD:
